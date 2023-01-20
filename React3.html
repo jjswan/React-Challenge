@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+  const root = document.querySelector("#root");
+  // let counter = 0;
+  
+  // function render(){
+  //   ReactDOM.createRoot(root).render(<Container/>);
+  // }
+  // function countUp(){
+  //   counter = counter+1;
+  //   render();
+  // }
+  // //jsx를 사용해서 compoenet에 변수(counter)와 event 연결하기
+  // const Container = () => (
+  //   <div>
+  //     <h3>Total clicks: {counter}</h3>
+  //     <button onClick = {countUp}>Click me</button>
+  //   </div>)
+  // //button 랜더링하기
+  // render();
+
+  //좀 더 쉽게 rerendering 하기
+  function App(){
+    //array 이용하기. 즉 [0, f] 를 각각 counter, modifier에 매칭시키는 것
+    const [counter, setCounter] = React.useState(0);
+    const onClick = () => {
+      //counter = counter + 1;
+      //modifier 안에서 위에서 정의한 것처럼 counter = counter+1 이라는 함수가 실행되어서 초기값을 변경하고
+      //rerendering까지 진행함
+      //setCounter(counter+1);
+      //counter 값을 좀 더 안전하게 계산하기 위한 방법. current는 현재값을 의미함.
+      setCounter((current) => current+1);
+    };
+    return (
+      <div>
+        <h3>Total clicks: {counter}</h3>
+        <button onClick = {onClick}>Click me</button>
+      </div>)
+  }
+
+  ReactDOM.createRoot(root).render(<App/>);
+</script>
+</html>

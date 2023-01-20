@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+  const root = document.querySelector("#root");
+  
+  // const h3 = React.createElement("h3", {
+  //   onMouseEnter: () => console.log("mouse enter"),
+  // }, "Welcome to React study!!");
+
+  //jsx를 사용해서 span element 만들기
+  // const Title = (
+  //   <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>Welcome to React study!!</h3>
+  //   );
+
+  //function 으로 Title 정의하기
+  function Title(){
+    return (<h3 id="title" onMouseEnter={() => console.log("mouse enter")}>Welcome to React study!!</h3>)
+  }
+  //jsx를 사용해서 button element 만들기
+  // const btn = (
+  //   <button style={{backgroundColor:"tomato"}} onClick = {()=>console.log("I'm clicked!")}>Click me</button>
+  //   );
+
+  //function 으로 btn 정의하기
+  function Btn(){
+    return (<button style = {{backgroundColor:"tomato"}} onClick= {()=> console.log("I'm clicked!")}>Click me</button>)
+  }
+
+  //const container = React.createElement("div", null, [Title, btn]);
+  //jsx를 사용해서 containter 만들고 그 안에 component 집어넣기 
+  const Container = () => (
+    <div>
+      <Title/> <Btn/>
+    </div>)
+  //button 랜더링하기
+  ReactDOM.createRoot(root).render(<Container/>);
+</script>
+</html>
