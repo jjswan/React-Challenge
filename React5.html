@@ -9,34 +9,34 @@
 <body>
   <div id="root"></div>
 </body>
-<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-<script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
 
-  function Btn({text, fontSize = 14}){
-    return <button style={{
+  function Btn({raccoon, onClick}){
+    console.log(raccoon, " was rendered");
+    return <button onClick = {onClick} style={{
       backgroundColor: "tomato",
       color: "white",
       padding: "10px 20px",
       border:0,
       borderRadius:10,
-      fontSize: fontSize,
+      fontSize: 18,
 
-    }}>{text}</button>
+    }}>{raccoon}</button>
   }
-  
-  Btn.propTypes = {
-    text: PropTypes.string.isRequired, 
-    fontSize: PropTypes.number,
-  }
+
+  const MemorizedBtn = React.memo(Btn);
 
   function App(){
+    const [value, setValue] = React.useState("Save Changes");
+    const changeValue = () => setValue("Revert Changes");
+
     return (
       <div>
-        <Btn text="Save Changes" fontSize={18}/>
-        <Btn text="Comfirm" />
+        <MemorizedBtn raccoon={value} onClick={changeValue}/>
+        <MemorizedBtn raccoon="Continue"/>
       </div>);
   }
   const root = document.querySelector("#root");
